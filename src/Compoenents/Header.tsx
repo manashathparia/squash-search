@@ -27,7 +27,7 @@ export default function Header(props: HeaderProps) {
 		if (MainStore.searchTerm) {
 			MainStore.searchVenues(MainStore.searchTerm);
 		}
-	}, [MainStore.searchTerm]);
+	}, [MainStore.searchTerm, MainStore.sort, MainStore.distance]);
 
 	useEffect(() => {
 		if (props.currLocation[0] && props.currLocation[1]) {

@@ -19,7 +19,7 @@ function App() {
 
 	useEffect(() => {
 		MainStore.fetchVenues(true, MainStore.sort);
-	}, [MainStore.sort]);
+	}, [MainStore.sort, MainStore.distance]);
 
 	const customTheme = extendTheme({
 		fontFamily: {
