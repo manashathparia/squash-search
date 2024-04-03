@@ -5,7 +5,10 @@ import { devtools } from "zustand/middleware";
 import { Venue } from "../types";
 import axios from "axios";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL =
+	process.env.NODE_ENV === "production"
+		? "https://squash-search-server.vercel.app"
+		: "http://localhost:8080";
 
 const milesToMeters = (miles: number) => miles * 1609.34;
 
