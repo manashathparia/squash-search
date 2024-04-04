@@ -15,7 +15,13 @@ export default function ListView() {
 		: MainStore.venues;
 
 	return (
-		<Box sx={{ padding: "1em 12em" }}>
+		<Box
+			sx={{
+				padding: {
+					sm: "1em",
+					md: "1em 12em",
+				},
+			}}>
 			{venues.map((venue, i) => (
 				<ListCard venue={venue} key={i} onViewOnMapPress={onViewOnMapPress} />
 			))}

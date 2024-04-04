@@ -43,10 +43,15 @@ export default function MapView(props: MapViewProps) {
 				},
 			}}>
 			<MapContainer
-				center={props.currLocation}
-				zoom={13}
+				center={
+					[
+						MainStore.selectedVenue?.latitude || MainStore.venues[0].latitude,
+						MainStore.selectedVenue?.longitude || MainStore.venues[0].longitude,
+					] as any
+				}
+				zoom={11}
 				scrollWheelZoom={false}
-				style={{ width: "100%", height: "calc(100vh - 75px)" }}>
+				style={{ width: "100%", height: "calc(100vh - 50px)" }}>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 				<Marker position={props.currLocation as any} icon={icon}>
 					<Popup>Current Location</Popup>

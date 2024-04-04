@@ -19,6 +19,7 @@ interface MainStore {
 	sort: string;
 	distance: number;
 	searchTerm: string;
+	locationDenied: boolean;
 	setSearchTerm: (searchTerm: string) => void;
 	fetchVenues: (reset: boolean, sort?: string) => Promise<void>;
 	setCurrentLocation: (location: [number, number]) => void;
@@ -29,6 +30,7 @@ interface MainStore {
 	setSort: (sort: string) => void;
 	setDistance: (distance: number) => void;
 	searchVenues: (searchTerm: string) => Promise<void>;
+	setLocationDenied: (denied: boolean) => void;
 }
 
 export const useMainStore = create<MainStore>()(
@@ -41,6 +43,7 @@ export const useMainStore = create<MainStore>()(
 		distance: 10000,
 		searchTerm: "",
 		searchedVenues: [],
+		locationDenied: false,
 
 		setCurrentLocation: (location: [number, number]) =>
 			set(() => ({ currentLocation: location })),
@@ -48,6 +51,9 @@ export const useMainStore = create<MainStore>()(
 		setCurrentView: (view: string) => set(() => ({ currentView: view })),
 
 		setSelectedVenue: (venue: any) => set(() => ({ selectedVenue: venue })),
+
+		setLocationDenied: (denied: boolean) =>
+			set(() => ({ locationDenied: denied })),
 
 		fetchVenues: async (reset: boolean, sort?: string) => {
 			const { data } = await axios.get(

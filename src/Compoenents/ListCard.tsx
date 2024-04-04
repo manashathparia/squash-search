@@ -53,7 +53,10 @@ export default function ListCard({
 
 			<Box
 				sx={{
-					display: compact ? "block" : "flex",
+					display: {
+						sm: "block",
+						md: compact ? "block" : "flex",
+					},
 					justifyContent: "space-between",
 					alignItems: "center",
 				}}>

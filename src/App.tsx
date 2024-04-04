@@ -9,17 +9,23 @@ function App() {
 	const MainStore = useMainStore();
 
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition((position) => {
-			MainStore.setCurrentLocation([
-				position.coords.latitude,
-				position.coords.longitude,
-			]);
+		navigator.permissions.query({ name: "geolocation" }).then((result) => {
+			if (result.state === "granted" || result.state === "prompt") {
+				navigator.geolocation.getCurrentPosition((position) => {
+					MainStore.setCurrentLocation([
+						position.coords.latitude,
+						position.coords.longitude,
+					]);
+				});
+			} else {
+				MainStore.setLocationDenied(true);
+			}
 		});
 	}, []);
 
 	useEffect(() => {
 		MainStore.fetchVenues(true, MainStore.sort);
-	}, [MainStore.sort, MainStore.distance]);
+	}, [MainStore.sort, MainStore.distance, MainStore.currentLocation]);
 
 	const customTheme = extendTheme({
 		fontFamily: {
@@ -30,7 +36,6 @@ function App() {
 
 	const { currentLocation, currentView, setCurrentView } = MainStore;
 
-	console.log("currentLocation", MainStore.sort);
 	return (
 		<div className="App">
 			<CssVarsProvider theme={customTheme}>
