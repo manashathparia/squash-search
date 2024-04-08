@@ -7,7 +7,7 @@ import axios from "axios";
 
 const SERVER_URL =
 	process.env.NODE_ENV === "production"
-		? "https://torflix-jswtp874x-manashathparia.vercel.app/fetch/?url=http://3.109.186.19:8080"
+		? "https://squash-search.ctoninja.tech"
 		: // ? "https://squash-search-server.vercel.app"
 		  "http://localhost:8080";
 
