@@ -134,9 +134,9 @@ export default function Header(props: HeaderProps) {
 					onChange={(e: any, newVal: any) => MainStore.setDistance(newVal)}
 					sx={{ marginLeft: "1em" }}
 					variant="plain">
-					<Option value={50}>5 miles</Option>
-					<Option value={100}>10 miles</Option>
-					<Option value={150}>15 miles</Option>
+					<Option value={5}>5 miles</Option>
+					<Option value={10}>10 miles</Option>
+					<Option value={250}>15 miles</Option>
 				</Select>
 			</Box>
 		</>

@@ -7,8 +7,9 @@ import axios from "axios";
 
 const SERVER_URL =
 	process.env.NODE_ENV === "production"
-		? "https://squash-search-server.vercel.app"
-		: "http://localhost:8080";
+		? "https://torflix-jswtp874x-manashathparia.vercel.app/fetch/?url=http://3.109.186.19:8080"
+		: // ? "https://squash-search-server.vercel.app"
+		  "http://localhost:8080";
 
 const milesToMeters = (miles: number) => miles * 1609.34;
 
@@ -40,7 +41,7 @@ export const useMainStore = create<MainStore>()(
 		currentView: "list",
 		selectedVenue: null,
 		sort: "distance",
-		distance: 10000,
+		distance: 5,
 		searchTerm: "",
 		searchedVenues: [],
 		locationDenied: false,
@@ -61,7 +62,7 @@ export const useMainStore = create<MainStore>()(
 					get().currentLocation[0]
 				}&targetLon=${get().currentLocation[1]}&radius=${milesToMeters(
 					get().distance
-				)}`
+				)}&limit=5&skip=${reset ? 0 : get().venues.length}`
 			);
 
 			set(() => ({ venues: reset ? data : [...data, ...data] }));
@@ -73,7 +74,9 @@ export const useMainStore = create<MainStore>()(
 					get().currentLocation[0]
 				}&targetLon=${get().currentLocation[1]}&radius=${milesToMeters(
 					get().distance
-				)}&sort=${get().sort}`
+				)}&sort=${get().sort}
+				&limit=10
+				`
 			);
 
 			set(() => ({ searchedVenues: data }));
