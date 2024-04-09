@@ -1,0 +1,76 @@
+[
+	{
+		"name": "Dorset Health & Racquets Club",
+		"address": "Cabot Lane Poole BH17 7BX",
+		"distance": 1.2,
+		"courts": 2,
+		"clubs": [
+			{
+				"name": "Squash Club 1",
+				"email": "email@gmail.com",
+				"phone": "123-456-7890",
+				"members": 100,
+				"website": "www.squashclub1.com"
+			}
+		]
+	},
+	{
+		"name": "Haymoor Squash",
+		"address": "18, Neighbourhood Centre, Culliford Crescent Poole BH17 9DW",
+		"distance": 2.3,
+		"courts": 3,
+		"clubs": [
+			{
+				"name": "Squash Club 1",
+				"email": "email@gmail.com",
+				"phone": "123-456-7890",
+				"members": 100,
+				"website": "www.squashclub1.com"
+			}
+		]
+	},
+	{
+		"name": "West Hants Lawn Tennis Club",
+		"address": "Magna Road Wimborne BH21 3AP",
+		"distance": 3.4,
+		"courts": 4,
+		"clubs": []
+	},
+	{
+		"name": "Squash Club 1",
+		"address": "1234 Squash St",
+		"distance": 1.2,
+		"courts": 2,
+		"clubs": [
+			{
+				"name": "Squash Club 1",
+				"email": "email@gmail.com",
+				"phone": "123-456-7890",
+				"members": 100,
+				"website": "www.squashclub1.com"
+			}
+		]
+	},
+	{
+		"name": "Squash Club 2",
+		"address": "5678 Squash St",
+		"distance": 2.3,
+		"courts": 3,
+		"clubs": [
+			{
+				"name": "Squash Club 1",
+				"email": "email@gmail.com",
+				"phone": "123-456-7890",
+				"members": 100,
+				"website": "www.squashclub1.com"
+			}
+		]
+	},
+	{
+		"name": "Squash Club 3",
+		"address": "91011 Squash St",
+		"distance": 3.4,
+		"courts": 4,
+		"clubs": []
+	}
+]
