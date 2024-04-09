@@ -1,12 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Compoenents/Header";
 import ListView from "./Views/ListView";
 import MapView from "./Views/MapView";
-import { CssVarsProvider, extendTheme } from "@mui/joy";
+import { CircularProgress, CssVarsProvider, extendTheme } from "@mui/joy";
 import { useMainStore } from "./Stores/MainStore";
+import "@fontsource/inter";
+import "./index.css";
 
-function App() {
+function SquashSearch() {
 	const MainStore = useMainStore();
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		navigator.permissions.query({ name: "geolocation" }).then((result) => {
@@ -24,7 +27,14 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		MainStore.fetchVenues(true, MainStore.sort);
+		setLoading(true);
+		MainStore.fetchVenues(true, MainStore.sort)
+			.then(() => {
+				setLoading(false);
+			})
+			.catch(() => {
+				setLoading(false);
+			});
 	}, [MainStore.sort, MainStore.distance, MainStore.currentLocation]);
 
 	const customTheme = extendTheme({
@@ -47,8 +57,19 @@ function App() {
 				<div
 					style={{
 						backgroundColor: "#F7F6F5",
+						minHeight: "calc(100vh - 50px)",
 					}}>
-					{currentView === "list" ? (
+					{loading ? (
+						<CircularProgress
+							size={"md"}
+							sx={{
+								left: "50%",
+								top: "50%",
+								position: "absolute",
+								transform: "translate(-50%, -50%)",
+							}}
+						/>
+					) : currentView === "list" ? (
 						<ListView />
 					) : (
 						<MapView currLocation={currentLocation as [number, number]} />
@@ -59,4 +80,4 @@ function App() {
 	);
 }
 
-export default App;
+export default SquashSearch;

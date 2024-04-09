@@ -136,7 +136,7 @@ export default function Header(props: HeaderProps) {
 					variant="plain">
 					<Option value={5}>5 miles</Option>
 					<Option value={10}>10 miles</Option>
-					<Option value={250}>15 miles</Option>
+					<Option value={15}>15 miles</Option>
 				</Select>
 			</Box>
 		</>
