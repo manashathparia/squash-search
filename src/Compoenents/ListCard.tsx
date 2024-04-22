@@ -27,13 +27,26 @@ function calculateDistance(
 	return distance;
 }
 
-const ActionBox = styled(Box, { name: "ActionBox" })(({ theme }) => ({
+const ActionBox = styled(Box, { name: "ActionBox" })(() => ({
 	width: 200,
 	marginLeft: 10,
 	backgroundColor: "#EFEEEC",
 	borderRadius: "10px 10px 0 0",
 	padding: "1em 0",
 }));
+
+const ActionBoxContainerStyled = (compact: boolean) =>
+	styled(Box, { name: "ActionBoxContainer" })(({ theme }) => ({
+		display: compact ? "block" : "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
+		[theme.breakpoints.down("sm")]: {
+			display: "block",
+		},
+		"@container (max-width: 300px)": {
+			display: "block",
+		},
+	}));
 
 interface ListCardProps {
 	venue: Venue;
@@ -62,6 +75,11 @@ export default function ListCard({
 		}
 	}, [MainStore.currentLocation, venue.latitude, venue.longitude]);
 
+	const ActionBoxContainer = useMemo(
+		() => ActionBoxContainerStyled(compact),
+		[compact]
+	);
+
 	return (
 		<Sheet
 			key={venue.name}
@@ -70,6 +88,8 @@ export default function ListCard({
 				padding: "1.5em",
 				paddingBottom: 0,
 				borderBottom: "2px solid #efeeec",
+				containerType: "inline-size",
+				containerName: "listContainer",
 			}}>
 			<Typography
 				level="h3"
@@ -93,15 +113,7 @@ export default function ListCard({
 				{venue.physical_address}
 			</Typography>
 
-			<Box
-				sx={{
-					display: {
-						sm: "block",
-						md: compact ? "block" : "flex",
-					},
-					justifyContent: "space-between",
-					alignItems: "center",
-				}}>
+			<ActionBoxContainer className="cont">
 				<Typography level="body-sm">COURTS: {venue.no_of_courts}</Typography>
 				<Box
 					sx={{
@@ -125,7 +137,7 @@ export default function ListCard({
 						</Typography>
 					</ActionBox>
 				</Box>
-			</Box>
+			</ActionBoxContainer>
 		</Sheet>
 	);
 }

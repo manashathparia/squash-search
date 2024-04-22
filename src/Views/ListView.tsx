@@ -4,6 +4,16 @@ import ListCard from "../Compoenents/ListCard";
 import { useMainStore } from "../Stores/MainStore";
 import { useState } from "react";
 
+const ListContainer = styled(Box, { name: "ListContainer" })(({ theme }) => ({
+	padding: "1em",
+	[theme.breakpoints.up("md")]: {
+		padding: "1em 12em",
+	},
+	"@container (max-width: 500px)": {
+		padding: "1em",
+	},
+}));
+
 export default function ListView() {
 	const MainStore = useMainStore();
 
@@ -28,13 +38,7 @@ export default function ListView() {
 	};
 
 	return (
-		<Box
-			sx={{
-				padding: {
-					sm: "1em",
-					md: "1em 12em",
-				},
-			}}>
+		<ListContainer>
 			{venues.map((venue, i) => (
 				<ListCard venue={venue} key={i} onViewOnMapPress={onViewOnMapPress} />
 			))}
@@ -49,6 +53,6 @@ export default function ListView() {
 					<Typography level="body-sm">Load More</Typography>
 				</Button>
 			</Box> */}
-		</Box>
+		</ListContainer>
 	);
 }

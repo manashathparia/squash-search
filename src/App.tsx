@@ -58,6 +58,8 @@ function SquashSearch() {
 					style={{
 						backgroundColor: "#F7F6F5",
 						minHeight: "calc(100vh - 50px)",
+						containerType: "inline-size",
+						containerName: "mainContainer",
 					}}>
 					{loading ? (
 						<CircularProgress

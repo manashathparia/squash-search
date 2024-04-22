@@ -8,6 +8,7 @@ import {
 	Option,
 	Select,
 	Typography,
+	styled,
 } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useMainStore } from "../Stores/MainStore";
@@ -21,6 +22,22 @@ interface HeaderProps {
 }
 
 const libraries = ["places"];
+
+const HeaderContainerStyled = styled(Box, { name: "HeaderContainer" })(
+	({ theme }) => ({
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
+		padding: "0 1em",
+		height: "50px",
+		[theme.breakpoints.up("md")]: {
+			padding: "0 12em",
+		},
+		"@container (max-width: 500px)": {
+			padding: "0 1em",
+		},
+	})
+);
 
 export default function Header(props: HeaderProps) {
 	const MainStore = useMainStore();
@@ -145,19 +162,11 @@ export default function Header(props: HeaderProps) {
 	);
 
 	return (
-		<Box>
-			<Box
-				sx={{
-					display: "flex",
-					justifyContent: "space-between",
-					alignItems: "center",
-					padding: {
-						sm: "0 1em",
-						md: "0 12em",
-					},
-					// borderBottom: "1px solid #ccc",
-					height: "50px",
-				}}>
+		<Box
+			sx={{
+				containerType: "inline-size",
+			}}>
+			<HeaderContainerStyled>
 				<Typography level="body-md">
 					Location:{" "}
 					<Typography level="title-lg">
@@ -203,7 +212,7 @@ export default function Header(props: HeaderProps) {
 					}}>
 					{menuItems}
 				</Box>
-			</Box>
+			</HeaderContainerStyled>
 			<Box
 				sx={{
 					padding: {
